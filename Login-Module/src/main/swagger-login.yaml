@@ -1,0 +1,1498 @@
+swagger: '2.0'
+info:
+  description: Login sample
+  version: 1.0.1
+  title: Login module api
+  termsOfService: ''
+  contact:
+    name: me
+    email: g.s.shriram69@gmail.com
+    url: https://www.google.com
+  license:
+    name: License
+    url: https://www.google.com
+host: localhost:8080
+basePath: /
+externalDocs:
+  description: login module
+  url: https://www.google.com
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  basicAuth:
+    type: basic
+security:
+  - basicAuth: []
+paths:
+  /register:
+    post:
+      tags:
+        - General
+      summary: register user details
+      description: register user details
+      operationId: register
+      parameters:
+      - in: body
+        name: UserDetails
+        description: UserDetails
+        required: true
+        schema:
+            $ref: '#/definitions/UserDetails'
+      responses:
+        '201':
+          description: User created successfully, Activation pending!
+        '404':
+          description: Not Found
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        '500':
+          description: Internal Server
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        '503':
+          description: Service Unavailable
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        default:
+          description: Unexpected error
+  /login:
+    get:
+      tags:
+        - General
+      summary: To login and view user details
+      description: To login and view user details
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+             $ref: '#/definitions/UserDetails'
+        '400':
+          description: BadRequest
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        '401':
+          description: Unauthorized
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        '403':
+          description: Forbidden
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        '404':
+          description: Not Found
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        '500':
+          description: Internal Server
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        '503':
+          description: Service Unavailable
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+      operationId: login
+  /activate-account:
+    put:
+      tags:
+        - General
+      summary: activate account
+      description: activate account
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - name: UserDetails
+        in: body
+        description: UserDetails
+        required: true
+        schema:
+          properties:
+            otp:
+              type: number
+            userName:
+              type: string
+          
+      responses:
+        '200':
+          description: Account Activated
+        '400':
+          description: BadRequest
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        '401':
+          description: Unauthorized
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        '403':
+          description: Forbidden
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        '404':
+          description: Not Found
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        '500':
+          description: Internal Server
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        '503':
+          description: Service Unavailable
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+      operationId: activate      
+  /forget-password:
+    post:
+      tags:
+        - General
+      summary: activate account
+      description: activate account
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - name: UserDetails
+        in: body
+        description: UserDetails
+        required: true
+        schema:
+          properties:
+            userName:
+              type: string
+          
+      responses:
+        '200':
+          description: Password reseted, check otp in registered email address
+        '400':
+          description: BadRequest
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        '401':
+          description: Unauthorized
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        '403':
+          description: Forbidden
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        '404':
+          description: Not Found
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        '500':
+          description: Internal Server
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        '503':
+          description: Service Unavailable
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+      operationId: forget      
+  /reset-password:
+    post:
+      tags:
+        - General
+      summary: activate account
+      description: activate account
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - name: UserDetails
+        in: body
+        description: UserDetails
+        required: true
+        schema:
+          properties:
+            userName:
+              type: string
+            otp:
+              type: number
+            password:
+              type: string
+          
+      responses:
+        '200':
+          description: Password reseted, check otp in registered email address
+        '400':
+          description: BadRequest
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        '401':
+          description: Unauthorized
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        '403':
+          description: Forbidden
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        '404':
+          description: Not Found
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        '500':
+          description: Internal Server
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        '503':
+          description: Service Unavailable
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+      operationId: reset
+  /user-details:
+    put:
+      tags:
+        - General
+      summary: activate account
+      description: activate account
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: body
+        name: UserDetails
+        description: UserDetails
+        required: true
+        schema:
+            $ref: '#/definitions/UserDetails'
+          
+      responses:
+        '200':
+          description: Password reseted, check otp in registered email address
+        '400':
+          description: BadRequest
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        '401':
+          description: Unauthorized
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        '403':
+          description: Forbidden
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        '404':
+          description: Not Found
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        '500':
+          description: Internal Server
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+        '503':
+          description: Service Unavailable
+          schema:
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    errorCode:
+                      type: string
+                      description: Error technical Code (can be different than the HTTP return code)
+                    errorMessage:
+                      type: string
+                      description: Message describing the error (Do not give too much information, to avoid security breach)
+                    errorLevel:
+                      type: string
+                      description: Criticity level of error
+                      default: info
+                      enum:
+                        - info
+                        - warning
+                        - error
+                        - critical
+                    errorType:
+                      type: string
+                      description: Type of error
+                      enum:
+                        - functional
+                        - technical
+                    documentationUrl:
+                      type: string
+                      description: Url of the documenation associated to the violations
+                    tips:
+                      type: string
+                      description: Tips/help for adressing the violations
+                  required:
+                    - errorCode
+                    - errorMessage
+      operationId: userDetails      
+  /openapi.json:
+    get:
+      tags:
+        - Common
+      operationId: openApi
+      summary: Specifications Swagger/openapi
+      description: Information on service provided, this information is highly recommended in your API.
+      responses:
+        '200':
+          description: OK
+        default:
+          description: Unexpected error
+definitions:
+  UserDetails:
+    type: object
+    properties:
+      name:
+        type: string
+      age:
+          type: number
+      password:
+        type: string
+      email:
+        type: string
+      phoneNumber:
+        type: number
+      userName:
+        type: string  
+      address:
+        type: array
+        items:
+          type: object
+          properties:
+            address:
+              type: string
+            street:
+              type: string
+            city:
+              type: string
+            state:
+              type: string
+            country:
+              type: string
+            postalCode:
+              type: string 
+  
